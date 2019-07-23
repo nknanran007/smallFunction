@@ -46,17 +46,33 @@ def saturation_and_lightness(img, hlsImg):
 
 
 if __name__ == '__main__':
-    img = cv2.imread("/home/rannan/dockerExchange/WWL-like5440_2_pure/1049_color.png")
+    img = cv2.imread("/home/rannan/TestFactory/SCP/rawImg/5440.png")
     #===>RGB_cbAug
-    #contrast_and_brightness(img)
+    '''contrast_and_brightness(img)'''
     #<===
     #===>HSL_slAug
-    fImg = img.astype(np.float32)
+    '''fImg = img.astype(np.float32)
     fImg /= 255.0# 图像归一化，且转换为浮点型, 颜色空间转换 BGR转为HLS
     hlsImg = cv2.cvtColor(fImg, cv2.COLOR_BGR2HLS)# HLS空间，三个通道分别是: Hue色相(0)、lightness亮度(1)、saturation饱和度(2)
-    saturation_and_lightness(img, hlsImg)
+    saturation_and_lightness(img, hlsImg)'''
+    #<===
+    #===>sharpAug
+    from PIL import Image
+    from PIL import ImageEnhance
+    image = Image.open('/home/rannan/TestFactory/SCP/rawImg/5440.png')
+    #image.show()
+    enh_sha = ImageEnhance.Sharpness(image)
+    sharpness = 5.0
+    image_sharped = enh_sha.enhance(sharpness)
+    image_sharped.show()
+    #img = Image.open(filepath)
+    img_convert_ndarray = np.array(image)#ndarray和image的相互转换
+    print("shape:",img_convert_ndarray.shape)
+    #ndarray_convert_img= Image.fromarray(img_convert_ndarray )
     #<===
 
 
 
-
+#-------------------------------------------------------------参考-------------------------------------------------------------
+#1.【数字图像处理系列二】亮度、对比度、饱和度、锐化、分辨率:https://zhuanlan.zhihu.com/p/44813768
+#2.【python图像处理】图像的增强（ImageEnhance类详解）:https://blog.csdn.net/guduruyu/article/details/71124837
