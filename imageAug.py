@@ -6,8 +6,8 @@ import numpy as np
 #===============================RGB空间的图像对比度/亮度调节
 def contrast_and_brightness(img):
     ''''''
-    cnum = 1#通常在(1,20)范围
-    bnum = 0#通常在(0,100)范围
+    cnum = 7#通常在(1,20)范围
+    bnum = 100#通常在(0,100)范围
     cimg = np.ones((img.shape[0], img.shape[1], 3), dtype=np.uint8)
     eles1 = 0.1 * cnum * img[:,:,0] + bnum
     eles2 = 0.1 * cnum * img[:,:,1] + bnum
@@ -48,15 +48,18 @@ def saturation_and_lightness(img, hlsImg):
 if __name__ == '__main__':
     img = cv2.imread("/home/rannan/TestFactory/SCP/rawImg/5440.png")
     #===>RGB_cbAug
-    '''contrast_and_brightness(img)'''
+    contrast_and_brightness(img)
     #<===
     #===>HSL_slAug
-    '''fImg = img.astype(np.float32)
+    '''
+    fImg = img.astype(np.float32)
     fImg /= 255.0# 图像归一化，且转换为浮点型, 颜色空间转换 BGR转为HLS
     hlsImg = cv2.cvtColor(fImg, cv2.COLOR_BGR2HLS)# HLS空间，三个通道分别是: Hue色相(0)、lightness亮度(1)、saturation饱和度(2)
-    saturation_and_lightness(img, hlsImg)'''
+    saturation_and_lightness(img, hlsImg)
+    '''
     #<===
     #===>sharpAug
+    '''
     from PIL import Image
     from PIL import ImageEnhance
     image = Image.open('/home/rannan/TestFactory/SCP/rawImg/5440.png')
@@ -69,6 +72,7 @@ if __name__ == '__main__':
     img_convert_ndarray = np.array(image)#ndarray和image的相互转换
     print("shape:",img_convert_ndarray.shape)
     #ndarray_convert_img= Image.fromarray(img_convert_ndarray )
+    '''
     #<===
 
 

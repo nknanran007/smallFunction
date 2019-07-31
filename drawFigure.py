@@ -19,4 +19,7 @@ def drawZXT(x1, y1, x2, y2, xLabel, yLabel, titleName):
 if __name__ == '__main__':
 	#===>
 	drawZXT([1,2,3],[3,1,2],[1,2,3],[1,2,3],"steps","loss","ZXT")
-	#<===	
+	#<===
+
+#=============================参考
+#https://www.jianshu.com/p/eb9ba6ee0772(matplotlib手册(7) - 折线图和曲线图)
